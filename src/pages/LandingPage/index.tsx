@@ -6,42 +6,97 @@ import {
   HStack,
   Heading,
   Image,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Stack,
   Text,
+  VStack,
+  useDisclosure,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { Slider } from "../../components/Slider";
+
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 export function LandingPage() {
+  const { isOpen, onToggle } = useDisclosure();
+
   return (
     <Box
       backgroundImage={"assets/bg-landing.png"}
       bgRepeat={"no-repeat"}
       backgroundSize={"cover"}
     >
-      <Flex flexDir="column" w="85.5%" mx="auto">
-        <HStack justify="space-between" mt="45px">
+      <Flex
+        w={{ base: "90%", md: "85.5%" }}
+        justify="space-between"
+        pt={{ base: "20px", md: "45px" }}
+        mx="auto"
+      >
+        <VStack display={{ base: "flex", md: "none" }} align="flex-start">
+          <VStack align="center">
+            <Menu>
+              {({ isOpen }) => (
+                <>
+                  <MenuButton
+                    textAlign="start"
+                    p={0}
+                    as={Button}
+                    w="80px"
+                    bgColor="transparent"
+                    onClick={onToggle}
+                  >
+                    {isOpen ? (
+                      <CloseIcon w={5} h={5} />
+                    ) : (
+                      <HamburgerIcon w={7} h={7} />
+                    )}
+                  </MenuButton>
+                  <MenuList minWidth="auto">
+                    <MenuItem>
+                      <MobileNav />
+                    </MenuItem>
+                  </MenuList>
+                </>
+              )}
+            </Menu>
+          </VStack>
+        </VStack>
+        <Flex
+          width="-webkit-fill-available"
+          justify={{ base: "center", md: "space-between" }}
+        >
           <Image w="164px" src="/assets/pontogo-logo.svg" alt="Logo PontoGo" />
-          <HStack spacing={["20px", "40px"]}>
-            <Flex fontSize={["sm", "md"]} gap="50px">
-              <Link to="/">
-                <Text color="white">Início</Text>
-              </Link>
-              <Link to="/">
-                <Text color="white">Planos</Text>
-              </Link>
-            </Flex>
-            <Link to="/login">
-              <Button size="sm" variant="solidWhite">
-                Fazer Login
-              </Button>
-            </Link>
-          </HStack>
-        </HStack>
-        <HStack mt="50px" mb="43px" gap="38px" justify="space-between">
+
+          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+            <DesktopNav />
+          </Flex>
+        </Flex>
+        <Flex align="center" display={{ base: "flex", md: "none" }}>
+          <Link to="/login">
+            <Button w="80px" h="40px" py="0px" variant="solidWhite">
+              Login
+            </Button>
+          </Link>
+        </Flex>
+      </Flex>
+      <Flex flexDir="column" maxW="85.5%" mx="auto">
+        <HStack
+          flexWrap={{ base: "wrap", md: "nowrap" }}
+          mt={{ base: "80px", md: "50px" }}
+          mb="43px"
+          gap="38px"
+          justify={{ base: "center", md: "space-between" }}
+        >
           <Flex
-            minW={{ lg: "420px", xl: "520px" }}
-            maxW={{ lg: "420px" }}
+            // minW={{ lg: "420px", xl: "520px" }}
+            // maxW={{ lg: "420px" }}
             color="white"
             flexDir="column"
+            align={{ base: "center", md: "flex-start" }}
           >
             <Text
               fontSize={{ sm: "md", md: "lg", xl: "2xl" }}
@@ -56,14 +111,15 @@ export function LandingPage() {
               as="h1"
               mb="15px"
               fontWeight={"extrabold"}
-              fontSize={{ sm: "xl", md: "3xl", xl: "40px" }}
+              fontSize={{ base: "3xl", xl: "40px" }}
+              textAlign={{ base: "center", md: "start" }}
             >
               Chegou a nova realidade para &nbsp;
               <Heading
                 as="span"
                 color="purple.800"
                 fontWeight={"extrabold"}
-                fontSize={{ sm: "xl", md: "3xl", xl: "40px" }}
+                fontSize={{ base: "3xl", xl: "40px" }}
               >
                 Controle de Pontos
               </Heading>
@@ -72,6 +128,7 @@ export function LandingPage() {
               fontWeight={"medium"}
               mb="30px"
               fontSize={{ sm: "xs", md: "sm", xl: "lg" }}
+              textAlign={{ base: "center", md: "start" }}
             >
               Com o PontoGo seus colaboradores poderão bater seus pontos de
               forma fácil e rápida, possuindo também uma Dashboard intuitiva.
@@ -80,18 +137,25 @@ export function LandingPage() {
               <Button size="sm" variant="purpleWhite">
                 Assinar agora
               </Button>
-
-              <Button borderRadius="5" variant="outline">
-                Ver planos
-              </Button>
+              <ChakraLink href="#planos">
+                <Button borderRadius="5" variant="outline">
+                  Ver planos
+                </Button>
+              </ChakraLink>
             </Flex>
           </Flex>
           <Image
-            w={{ sm: "300px", md: "450px", lg: "550px", xl: "fit-content" }}
+            w={{ sm: "400px", md: "450px", lg: "550px", xl: "fit-content" }}
             src="/assets/hero-img.png"
           />
         </HStack>
-        <HStack mb="87px" justifyContent="space-evenly" align="center">
+        <HStack
+          mb="87px"
+          justifyContent="space-evenly"
+          align="center"
+          wrap="wrap"
+          gap={{ base: "50px", sm: "none" }}
+        >
           <Image src="/assets/brainny-logo.png"></Image>
           <Image src="/assets/amopet-logo.svg"></Image>
           <Image src="/assets/bus-logo.svg"></Image>
@@ -106,24 +170,46 @@ export function LandingPage() {
           textAlign="center"
           gap="10px"
         >
-          <Text fontWeight="extrabold" fontSize="40px">
+          <Text
+            fontWeight="extrabold"
+            fontSize={{ base: "2xl", md: "4xl", xl: "40px" }}
+          >
             Encontre o plano perfeito
           </Text>
-          <Text opacity={0.7} fontSize="xl" fontWeight="regular">
+          <Text
+            opacity={0.7}
+            fontSize={{ sm: "xs", md: "sm", xl: "xl" }}
+            fontWeight="regular"
+          >
             Escolha o plano que melhor se encaixa na sua empresa e faça sua
             assinatura, dentro de 72h iremos liberar seus acessos.
           </Text>
         </Flex>
+        <div id="planos">
+          <Slider />
+        </div>
       </Flex>
-      <Box h="20px" bgColor="white"></Box>
       <Divider
         mt="100px"
         borderColor="purple.800"
         width="100vw"
         orientation="horizontal"
       />
-      <Flex justify="center" my="20px" gap="60px" mx="auto">
-        <Flex gap="5px" color="white" flexDir="column">
+      <Flex
+        flexDir={{ base: "column", sm: "row" }}
+        w={{ base: "70%", sm: "90%" }}
+        justify="center"
+        align={{ base: "center" }}
+        my="20px"
+        gap={{ base: "10px", sm: "60px" }}
+        mx="auto"
+      >
+        <Flex
+          align={{ base: "center", sm: "start" }}
+          gap="5px"
+          color="white"
+          flexDir="column"
+        >
           <Text fontSize="xl" fontWeight="bold">
             @pontogo
           </Text>
@@ -170,3 +256,41 @@ export function LandingPage() {
     </Box>
   );
 }
+
+function DesktopNav() {
+  return (
+    <HStack spacing={["20px", "40px"]}>
+      <Flex fontSize={["sm", "md"]} gap="50px">
+        <ChakraLink href="/">
+          <Text color="white">Início</Text>
+        </ChakraLink>
+        <ChakraLink href="#planos">
+          <Text color="white">Planos</Text>
+        </ChakraLink>
+      </Flex>
+      <Link to="/login">
+        <Button size="sm" variant="solidWhite">
+          Fazer Login
+        </Button>
+      </Link>
+    </HStack>
+  );
+}
+
+const MobileNav = () => {
+  return (
+    <VStack
+      display={{ base: "flex", md: "none" }}
+      align="flex-start"
+      fontSize={["sm", "md"]}
+      gap="15px"
+    >
+      <ChakraLink href="/">
+        <Text color="purple.900">Início</Text>
+      </ChakraLink>
+      <ChakraLink href="#planos">
+        <Text color="purple.900">Planos</Text>
+      </ChakraLink>
+    </VStack>
+  );
+};
