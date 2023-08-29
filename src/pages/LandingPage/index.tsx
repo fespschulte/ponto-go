@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Divider,
   Flex,
   HStack,
   Heading,
@@ -12,8 +13,6 @@ import { Link } from "react-router-dom";
 export function LandingPage() {
   return (
     <Box
-      h="100vh"
-      w="100vw"
       backgroundImage={"assets/bg-landing.png"}
       bgRepeat={"no-repeat"}
       backgroundSize={"cover"}
@@ -92,6 +91,81 @@ export function LandingPage() {
             src="/assets/hero-img.png"
           />
         </HStack>
+        <HStack mb="87px" justifyContent="space-evenly" align="center">
+          <Image src="/assets/brainny-logo.png"></Image>
+          <Image src="/assets/amopet-logo.svg"></Image>
+          <Image src="/assets/bus-logo.svg"></Image>
+          <Image src="/assets/gostudy-logo.svg"></Image>
+        </HStack>
+        <Flex
+          maxW="641px"
+          color="white"
+          flexDir="column"
+          mx="auto"
+          mb="70px"
+          textAlign="center"
+          gap="10px"
+        >
+          <Text fontWeight="extrabold" fontSize="40px">
+            Encontre o plano perfeito
+          </Text>
+          <Text opacity={0.7} fontSize="xl" fontWeight="regular">
+            Escolha o plano que melhor se encaixa na sua empresa e faça sua
+            assinatura, dentro de 72h iremos liberar seus acessos.
+          </Text>
+        </Flex>
+      </Flex>
+      <Box h="20px" bgColor="white"></Box>
+      <Divider
+        mt="100px"
+        borderColor="purple.800"
+        width="100vw"
+        orientation="horizontal"
+      />
+      <Flex justify="center" my="20px" gap="60px" mx="auto">
+        <Flex gap="5px" color="white" flexDir="column">
+          <Text fontSize="xl" fontWeight="bold">
+            @pontogo
+          </Text>
+          <Text fontSize="base" fontWeight="light">
+            Se conecta com a gente
+          </Text>
+        </Flex>
+        <Flex gap="40px">
+          <Link to="#">
+            <Image src="/assets/instagram-logo.svg"></Image>
+          </Link>
+          <Link to="#">
+            <Image src="/assets/facebook-logo.svg"></Image>
+          </Link>
+          <Link to="#">
+            <Image src="/assets/linkedin-logo.svg"></Image>
+          </Link>
+        </Flex>
+      </Flex>
+      <Divider borderColor="purple.800" orientation="horizontal" />
+      <Flex>
+        <Flex alignItems="center" mt="60px" mb="74px" w="100vw" flexDir="row">
+          <Divider
+            opacity={0.4}
+            borderColor="purple.800"
+            orientation="horizontal"
+          />
+          <Text
+            fontSize="base"
+            fontWeight="regular"
+            mx="30px"
+            minW="fit-content"
+            color="white"
+          >
+            PontoGo - Todos direitos reservados
+          </Text>
+          <Divider
+            opacity={0.4}
+            borderColor="purple.800"
+            orientation="horizontal"
+          />
+        </Flex>
       </Flex>
     </Box>
   );
