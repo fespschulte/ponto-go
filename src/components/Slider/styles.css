@@ -1,0 +1,15 @@
+.swiper {
+  height: 491px;
+  width: 87.5%;
+}
+
+.swiper-slide-active {
+  opacity: 0.8;
+}
+.swiper-slide-next {
+  opacity: 0.5;
+  z-index: -1;
+}
+.swiper-slide-prev {
+  opacity: 0.5;
+}
