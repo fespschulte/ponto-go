@@ -1,60 +1,77 @@
 import {
   HStack,
   VStack,
-  Image,
   Heading,
-  Flex,
+  Image,
   Button,
-  Text,
+  useBreakpointValue,
+  IconButton,
+  Stack,
+  Box,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import { Link } from "react-router-dom";
-import { Menu } from "../../components/DashMenu";
 import { ClockIn } from "../../components/ClockIn";
+import { Sidebar } from "../../components/Sidebar";
+import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 
 export function Dashboard() {
+  const { onOpen } = useSidebarDrawer();
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    md: true,
+  });
+
   return (
-    <HStack h="100vh" bgColor="#F2F2F2" align="flex-start">
-      <VStack h="100vh" bgColor="white" minW="180px">
-        <Image
-          mt="40px"
-          mb="30px"
-          w="134px"
-          src="/assets/pontogo-logo-purple.svg"
-        ></Image>
-        <VStack w="full" align="flex-start" gap="0px">
-          <Menu icon="mdi-light:view-dashboard" title="Dashboard" />
-        </VStack>
-        <Link to="/login">
-          <Flex
-            position="absolute"
-            bottom="20px"
-            left="20px"
-            gap="10px"
-            align="center"
-          >
-            <Icon
-              color="grey"
-              width="24px"
-              height="24px"
-              icon="ant-design:logout-outlined"
-            />
-            <Text>Sair</Text>
-          </Flex>
-        </Link>
-      </VStack>
+    <Stack
+      flexDir={!isWideVersion ? "column" : "row"}
+      h="100vh"
+      bgColor="#F2F2F2"
+      align="flex-start"
+    >
+      {!isWideVersion && (
+        <Box
+          bgColor="white"
+          w="full"
+          borderBottom="1px solid rgba(79, 79, 79, .3)"
+        >
+          <HStack w="90%" justify="space-between" mx="auto">
+            <IconButton
+              w="30px"
+              icon={<Icon icon={"ion:menu"} />}
+              fontSize="30px"
+              variant="unstyled"
+              aria-label="Open navigation"
+              onClick={onOpen}
+            ></IconButton>
+            <Image w="134px" src="/assets/pontogo-logo-purple.svg"></Image>
+          </HStack>
+        </Box>
+      )}
+
+      <Sidebar />
       <VStack mt="40px" align="flex-start" w="full" px="30px" gap="15px">
-        <Flex gap="164px">
-          <Heading fontSize="22px" fontWeight="semibold">
+        <HStack w="full" justify="space-between">
+          <Heading
+            minW={{ base: "160px", sm: "210px", md: "260px" }}
+            fontSize={{ base: "18px", sm: "20px", md: "22px" }}
+            fontWeight="semibold"
+          >
             Colaborador
           </Heading>
-          <Heading fontSize="22px" fontWeight="semibold">
+          <Heading
+            fontSize={{ base: "18px", sm: "20px", md: "22px" }}
+            fontWeight="semibold"
+          >
             Data
           </Heading>
-          <Heading fontSize="22px" fontWeight="semibold">
+          <Heading
+            mr="20px"
+            fontSize={{ base: "18px", sm: "20px", md: "22px" }}
+            fontWeight="semibold"
+          >
             Hora
           </Heading>
-        </Flex>
+        </HStack>
         <VStack gap="15px" w="full">
           <ClockIn />
         </VStack>
@@ -70,6 +87,6 @@ export function Dashboard() {
           </Button>
         </HStack>
       </VStack>
-    </HStack>
+    </Stack>
   );
 }

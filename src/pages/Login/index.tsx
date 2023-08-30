@@ -16,7 +16,7 @@ export function Login() {
       <HStack m="auto" w="85%" justify="center" align="center" gap="150px">
         <VStack
           display={{ base: "none", md: "flex" }}
-          maxW={{ md: "350px", md: "400px", xl: "585px" }}
+          maxW={{ base: "400px", xl: "585px" }}
           textAlign="center"
           align="center"
           color="purple.900"
@@ -30,7 +30,7 @@ export function Login() {
           </Text>
         </VStack>
         <VStack
-          w={{ md: "200px", md: "300px", xl: "400px" }}
+          w={{ base: "300px", xl: "400px" }}
           align="flex-start"
           gap="30px"
         >
