@@ -10,7 +10,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Stack,
   Text,
   VStack,
   useDisclosure,
@@ -22,7 +21,7 @@ import { Slider } from "../../components/Slider";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 export function LandingPage() {
-  const { isOpen, onToggle } = useDisclosure();
+  const { onToggle } = useDisclosure();
 
   return (
     <Box
