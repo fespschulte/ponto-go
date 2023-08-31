@@ -46,21 +46,21 @@ O layout da aplicação está disponível no Figma:
 ### Mobile
 
 <p align="center">
-  <img alt="Tela de login" title="Tela de login" src="./public/assets/mobile-screen-login.png" width="200px">
+  <img alt="Tela de login" title="Tela de login" src="./public/assets/mobile-screen-login.png" height="350px">
 
-  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/mobile-screen-dashboard.png" width="200px">
+  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/mobile-screen-dashboard.png" height="350px">
 
-  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/mobile-screen-meus-registros.png" width="200px">
+  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/mobile-screen-meus-registros.png" height="350px">
 </p>
 
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
- <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" width="400px">
+ <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" width="200px">
 
-  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/desktop-screen-dashboard.png" width="200px">
+  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/desktop-screen-dashboard.png" height="350px">
 
-  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/desktop-screen-meus-registros.png" width="200px">
+  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/desktop-screen-meus-registros.png" height="350px">
 </p>
 
 ---
@@ -97,12 +97,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 #### **Website** [ViteJS](https://vitejs.dev/)
 
 - **[React Router DOM v6](https://reactrouter.com/en/main)**
-- **[chakra-ui] (https://chakra-ui.com/getting-started)**
+- **[Chakra-ui] (https://chakra-ui.com/getting-started)**
 - **[Apollo Client](https://www.apollographql.com/docs/react/)**
 - **[Apollo Client React Hooks] (https://www.apollographql.com/docs/react/api/react/hooks)**
 - **[GraphQL](https://graphql.org/learn/)**
 - **[JWT Decode](https://www.npmjs.com/package/jwt-decode)**
-- **[gitmoji] (https://gitmoji.dev/)**
+- **[Gitmoji] (https://gitmoji.dev/)**
 
 > Veja o arquivo [package.json](https://github.com/fespschulte/ponto-go/blob/master/package.json)
 
