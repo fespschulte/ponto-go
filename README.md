@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="PontoGo" title="PontoGo" src="./assets/Home-screenshot.png" />
+    <img alt="PontoGo" title="PontoGo" src="./public/assets/Home-screenshot.png" />
 </h1>
 
 <h4 align="center"> 
@@ -46,21 +46,21 @@ O layout da aplicação está disponível no Figma:
 ### Mobile
 
 <p align="center">
-  <img alt="Tela de login" title="Tela de login" src="./assets/mobile-screen-login.png" width="200px">
+  <img alt="Tela de login" title="Tela de login" src="./public/assets/mobile-screen-login.png" width="200px">
 
-  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./assets/mobile-screen-dashboard.png" width="200px">
+  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/mobile-screen-dashboard.png" width="200px">
 
-  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./assets/mobile-screen-meus-registros.png" width="200px">
+  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/mobile-screen-meus-registros.png" width="200px">
 </p>
 
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
- <img alt="Tela de login" title="Tela de login" src="./assets/desktop-screen-login.png" width="200px">
+ <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" width="200px">
 
-  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./assets/desktop-screen-dashboard.png" width="200px">
+  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/desktop-screen-dashboard.png" width="200px">
 
-  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./assets/desktop-screen-meus-registros.png" width="200px">
+  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/desktop-screen-meus-registros.png" width="200px">
 </p>
 
 ---
