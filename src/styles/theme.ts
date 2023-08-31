@@ -1,4 +1,6 @@
 import { defineStyleConfig, extendTheme } from "@chakra-ui/react";
+import "@fontsource/poppins/100.css";
+import "@fontsource/poppins/200.css";
 import "@fontsource/poppins/300.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
