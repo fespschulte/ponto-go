@@ -1,4 +1,4 @@
-import { ReactNode, createContext } from "react";
+import { ReactNode, createContext, useContext } from "react";
 
 type SignInCredentials = {
   email: string;
@@ -15,6 +15,16 @@ type AuthProviderProps = {
 };
 
 export const AuthContext = createContext({} as AuthContextData);
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+
+  if (context === undefined) {
+    throw new Error("useAuth must be used within a AuthContext");
+  }
+
+  return context;
+}
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const isAuthenticated = false;
