@@ -48,9 +48,9 @@ O layout da aplicação está disponível no Figma:
 <p align="center">
   <img alt="Tela de login" title="Tela de login" src="./public/assets/mobile-screen-login.png" height="350px">
 
-  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/mobile-screen-dashboard.png" width="350px">
+  <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/mobile-screen-dashboard.png" height="350px">
 
-  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/mobile-screen-meus-registros.png" width="350px">
+  <img alt="Tela de Meus Registros" title="Tela de Meus Registros" src="./public/assets/mobile-screen-meus-registros.png" height="350px">
 </p>
 
 ### Web
