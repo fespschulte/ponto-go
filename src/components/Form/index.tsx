@@ -4,8 +4,10 @@ import {
   InputProps as ChakraInputProps,
   InputGroup,
   InputRightElement,
+  FormControl,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { forwardRef, ForwardRefRenderFunction } from "react";
 
 interface InputProps extends ChakraInputProps {
   name: string;
@@ -13,9 +15,12 @@ interface InputProps extends ChakraInputProps {
   icon?: string;
 }
 
-export function Input({ name, label, icon, ...rest }: InputProps) {
+const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { name, label, icon, ...rest },
+  ref
+) => {
   return (
-    <>
+    <FormControl>
       {!!label && (
         <FormLabel htmlFor={name} fontSize="xl">
           {label}
@@ -29,6 +34,7 @@ export function Input({ name, label, icon, ...rest }: InputProps) {
           mb="20px"
           focusBorderColor="purple.900"
           {...rest}
+          ref={ref}
         />
         {!!icon && (
           <InputRightElement
@@ -41,6 +47,8 @@ export function Input({ name, label, icon, ...rest }: InputProps) {
           </InputRightElement>
         )}
       </InputGroup>
-    </>
+    </FormControl>
   );
-}
+};
+
+export const Input = forwardRef(InputBase);

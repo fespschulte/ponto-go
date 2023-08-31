@@ -30,21 +30,22 @@ export function LandingPage() {
       backgroundSize={"cover"}
     >
       <Flex
-        w={{ base: "90%", md: "85.5%" }}
+        w={{ base: "85%", md: "85.5%" }}
         justify="space-between"
         pt={{ base: "20px", md: "45px" }}
         mx="auto"
       >
+        <Image w="164px" src="/assets/pontogo-logo.svg" alt="Logo PontoGo" />
         <VStack display={{ base: "flex", md: "none" }} align="flex-start">
           <VStack align="center">
-            <Menu>
+            <Menu placement="left">
               {({ isOpen }) => (
                 <>
                   <MenuButton
                     textAlign="start"
                     p={0}
                     as={Button}
-                    w="80px"
+                    w="auto"
                     bgColor="transparent"
                     onClick={onToggle}
                   >
@@ -54,8 +55,8 @@ export function LandingPage() {
                       <HamburgerIcon w={7} h={7} />
                     )}
                   </MenuButton>
-                  <MenuList minWidth="auto">
-                    <MenuItem>
+                  <MenuList mt="10px" borderRadius="5px" minWidth="auto">
+                    <MenuItem bgColor="transparent">
                       <MobileNav />
                     </MenuItem>
                   </MenuList>
@@ -66,20 +67,20 @@ export function LandingPage() {
         </VStack>
         <Flex
           width="-webkit-fill-available"
-          justify={{ base: "center", md: "space-between" }}
+          display={{ base: "none", md: "flex" }}
+          justify="flex-end"
         >
-          <Image w="164px" src="/assets/pontogo-logo.svg" alt="Logo PontoGo" />
+          {/* <Flex align="center" display={{ base: "flex", md: "none" }}>
+            <Link to="/login">
+              <Button w="80px" h="40px" py="0px" variant="solidWhite">
+                Login
+              </Button>
+            </Link>
+          </Flex> */}
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
-        </Flex>
-        <Flex align="center" display={{ base: "flex", md: "none" }}>
-          <Link to="/login">
-            <Button w="80px" h="40px" py="0px" variant="solidWhite">
-              Login
-            </Button>
-          </Link>
         </Flex>
       </Flex>
       <Flex flexDir="column" maxW="85.5%" mx="auto">
@@ -153,7 +154,9 @@ export function LandingPage() {
           justifyContent="space-evenly"
           align="center"
           wrap="wrap"
-          gap={{ base: "50px", sm: "none" }}
+          gap={{ base: "20px", sm: "none" }}
+          display={{ base: "grid", sm: "flex" }}
+          gridTemplateColumns={{ base: "150px 150px", sm: "none" }}
         >
           <Image src="/assets/brainny-logo.png"></Image>
           <Image src="/assets/amopet-logo.svg"></Image>
@@ -218,13 +221,22 @@ export function LandingPage() {
         </Flex>
         <Flex gap="40px">
           <Link to="#">
-            <Image src="/assets/instagram-logo.svg"></Image>
+            <Image
+              w={{ base: "45px", sm: "auto" }}
+              src="/assets/instagram-logo.svg"
+            ></Image>
           </Link>
           <Link to="#">
-            <Image src="/assets/facebook-logo.svg"></Image>
+            <Image
+              w={{ base: "45px", sm: "auto" }}
+              src="/assets/facebook-logo.svg"
+            ></Image>
           </Link>
           <Link to="#">
-            <Image src="/assets/linkedin-logo.svg"></Image>
+            <Image
+              w={{ base: "45px", sm: "auto" }}
+              src="/assets/linkedin-logo.svg"
+            ></Image>
           </Link>
         </Flex>
       </Flex>
@@ -276,7 +288,7 @@ function DesktopNav() {
   );
 }
 
-const MobileNav = () => {
+function MobileNav() {
   return (
     <VStack
       display={{ base: "flex", md: "none" }}
@@ -290,6 +302,11 @@ const MobileNav = () => {
       <ChakraLink href="#planos">
         <Text color="purple.900">Planos</Text>
       </ChakraLink>
+      <ChakraLink href="/login">
+        <Text fontWeight={"bold"} color="purple.900">
+          Login
+        </Text>
+      </ChakraLink>
     </VStack>
   );
-};
+}

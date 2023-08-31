@@ -1,41 +1,38 @@
-import { useState } from "react";
-import { Virtual, Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import "./styles.css";
+
 import { OfferCard } from "../OfferCards";
 
 export function Slider() {
-  const [swiperRef, setSwiperRef] = useState(null);
-  const [slides, setSlides] = useState(
-    Array.from({ length: 4 }).map((_, index) => <OfferCard />)
-  );
-
-  const slideTo = (index) => {
-    swiperRef.slideTo(index - 1, 0);
-  };
-
   return (
     <>
       <Swiper
-        modules={[Virtual, Navigation, Pagination]}
-        slidesPerView={3}
+        className="myswiper"
+        modules={[Navigation, Pagination]}
+        slidesPerView="auto"
         centeredSlides={true}
-        spaceBetween={-48}
-        pagination={{
-          type: "fraction",
-        }}
+        spaceBetween={0}
         navigation={true}
-        virtual
+        // verificar a prop que traz o card em destaque
       >
-        {slides.map((slideContent, index) => (
-          <SwiperSlide virtualIndex={index}>{slideContent}</SwiperSlide>
-        ))}
+        <SwiperSlide>
+          <OfferCard plan="Bronze" price="30" numColab="5" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <OfferCard plan="Prata" price="50" numColab="10" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <OfferCard plan="Ouro" price="100" numColab="20" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <OfferCard plan="Platina" price="200" />
+        </SwiperSlide>
       </Swiper>
     </>
   );

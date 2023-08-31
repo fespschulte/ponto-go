@@ -30,9 +30,9 @@ export function MyTimesheets() {
     md: true,
   });
 
-  const OverlayOne = () => (
-    <ModalOverlay bg="modal" backdropFilter="blur(4px)" />
-  );
+  function OverlayOne() {
+    return <ModalOverlay bg="modal" backdropFilter="blur(4px)" />;
+  }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayOne />);

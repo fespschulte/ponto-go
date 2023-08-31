@@ -9,8 +9,20 @@ import {
 } from "@chakra-ui/react";
 import { Input } from "../../components/Form";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import { useAuth } from "../../contexts/AuthContext";
+// import { LOGIN_REQUEST } from "../../graphQL/mutations";
+// import { useMutation } from "@apollo/client";
 
 export function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { signIn } = useAuth();
+
+  // const [ signIn ] = useMutation(LOGIN_REQUEST)
+
   return (
     <Flex h="100vh" align="center">
       <HStack m="auto" w="85%" justify="center" align="center" gap="150px">
@@ -48,6 +60,8 @@ export function Login() {
               name="email"
               label="Email"
               placeholder="exemplo@email.com"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <Input
               type="password"
@@ -55,12 +69,15 @@ export function Login() {
               label="Senha"
               placeholder="***********"
               icon="ant-design:eye-filled"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <Link to="/">Esqueci minha senha</Link>
           </VStack>
           <Button
             w={{ base: "full", md: "300px", xl: "400px" }}
             variant="darkPurpleWhite"
+            onClick={() => signIn({ email, password })}
           >
             Entrar
           </Button>
