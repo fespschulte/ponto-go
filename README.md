@@ -99,7 +99,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - **[React Router DOM v6](https://reactrouter.com/en/main)**
 - **[Chakra-ui](https://chakra-ui.com/getting-started)**
 - **[Apollo Client](https://www.apollographql.com/docs/react/)**
-- **[Apollo Client React Hooks] (https://www.apollographql.com/docs/react/api/react/hooks)**
+- **[Apollo Client React Hooks](https://www.apollographql.com/docs/react/api/react/hooks)**
 - **[GraphQL](https://graphql.org/learn/)**
 - **[JWT Decode](https://www.npmjs.com/package/jwt-decode)**
 - **[Gitmoji](https://gitmoji.dev/)**
