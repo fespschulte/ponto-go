@@ -4,7 +4,8 @@ import {
   InputProps as ChakraInputProps,
   InputGroup,
   InputRightElement,
-  FormControl,
+  Box,
+  IconButton,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { forwardRef, ForwardRefRenderFunction } from "react";
@@ -20,9 +21,9 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   ref
 ) => {
   return (
-    <FormControl>
+    <Box w="full" mt="20px">
       {!!label && (
-        <FormLabel htmlFor={name} fontSize="xl">
+        <FormLabel m="0px" htmlFor={name} fontSize="xl">
           {label}
         </FormLabel>
       )}
@@ -31,7 +32,6 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
           id={name}
           px="20px"
           h="45px"
-          mb="20px"
           focusBorderColor="purple.900"
           {...rest}
           ref={ref}
@@ -43,11 +43,13 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
             pr="20px"
             color="purple.900"
           >
-            <Icon width="24px" height="24px" icon={icon} />
+            <IconButton border="none" variant="transparent" aria-label="">
+              <Icon width="24px" height="24px" icon={icon} />
+            </IconButton>
           </InputRightElement>
         )}
       </InputGroup>
-    </FormControl>
+    </Box>
   );
 };
 
