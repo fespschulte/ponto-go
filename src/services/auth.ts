@@ -1,13 +1,13 @@
 import { useApolloClient } from "@apollo/react-hooks";
 import { useCookies } from "react-cookie";
 
-const TOKEN_NAME = "authToken";
+const AUTH_TOKEN = "auth-token";
 
 export const useAuthToken = () => {
-  const [cookies, setCookie, removeCookie] = useCookies([TOKEN_NAME]);
-  const setAuthToken = (authToken: string) => setCookie(TOKEN_NAME, authToken);
-  const removeAuthToken = () => removeCookie(TOKEN_NAME);
-  return [cookies[TOKEN_NAME], setAuthToken, removeAuthToken];
+  const [cookies, setCookie, removeCookie] = useCookies([AUTH_TOKEN]);
+  const setAuthToken = (authToken: string) => setCookie(AUTH_TOKEN, authToken);
+  const removeAuthToken = () => removeCookie(AUTH_TOKEN);
+  return [cookies[AUTH_TOKEN], setAuthToken, removeAuthToken];
 };
 
 export const useLogout = () => {
@@ -20,25 +20,3 @@ export const useLogout = () => {
   };
   return logout;
 };
-
-// interface Response {
-//   token: string;
-//   user: {
-//     name: string;
-//     email: string;
-//   };
-// }
-
-// export function signIn(): Promise<Response> {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({
-//         token: "jk12h3j21h3jk212h3jk12h3jkh12j3kh12k123hh21g3f12f3",
-//         user: {
-//           name: "Thiago",
-//           email: "thiagomarinho@rockeseat.com.br",
-//         },
-//       });
-//     }, 2000);
-//   });
-// }

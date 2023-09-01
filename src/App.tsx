@@ -4,13 +4,11 @@ import { MainRoutes } from "./routes";
 import { SidebarDrawerProvider } from "./contexts/SidebarDrawerContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ApolloProvider } from "@apollo/client";
-import { useAppApolloClient } from "./services/api";
+import { client } from "./services/api";
 
 function App() {
-  const apolloClient = useAppApolloClient();
-
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={client}>
       <AuthProvider>
         <ChakraProvider theme={theme}>
           <SidebarDrawerProvider>

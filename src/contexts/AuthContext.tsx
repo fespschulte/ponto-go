@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { useLoginMutation } from "../graphQL/mutations";
+import { useMutation } from "@apollo/client";
 import { useAuthToken } from "../services/auth";
+import { LOGIN_REQUEST } from "../graphQL/mutations";
 
 interface Role {
   name: string;
@@ -11,7 +12,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
-  user: { role: Role };
+  user: { role: Role } | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,13 +21,18 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loginMutation] = useLoginMutation();
-  const [, setAuthToken] = useAuthToken();
+  const [, setAuthToken, removeAuthToken] = useAuthToken();
   const [user, setUser] = useState<AuthContextType["user"] | null>(null);
+  const [loginMutation] = useMutation(LOGIN_REQUEST);
 
   const login = async (email: string, password: string) => {
     try {
-      const { data } = await loginMutation(email, password);
+      const { data } = await loginMutation({
+        variables: {
+          email,
+          password,
+        },
+      });
       if (data && data.login && data.login.user) {
         setIsAuthenticated(true);
         setUser(data.login.user);
@@ -39,10 +45,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
   const logout = () => {
     setIsAuthenticated(false);
+    setUser(null);
+    removeAuthToken(); // Remova o token ao fazer logout
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, user }}>
       {children}
     </AuthContext.Provider>
   );

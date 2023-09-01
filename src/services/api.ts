@@ -1,42 +1,22 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import { useAuthToken } from "./auth";
 
-const httpLink = new HttpLink({
+const httpLink = createHttpLink({
   uri: "http://test.frontend.api.brainny.cc/graphql",
 });
 
-const authMiddleware = (authToken: string) =>
-  new ApolloLink((operation, forward) => {
-    // add the authorization to the headers
-    if (authToken) {
-      operation.setContext({
-        headers: {
-          authorization: `Bearer ${authToken}`,
-        },
-      });
-    }
+const authLink = setContext((_, { headers }) => {
+  const token = useAuthToken();
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
 
-    return forward(operation);
-  });
-
-const cache = new InMemoryCache({});
-
-export const useAppApolloClient = () => {
-  const [authToken] = useAuthToken();
-  return new ApolloClient({
-    link: authMiddleware(authToken).concat(httpLink),
-    cache,
-  });
-};
-
-// import { ApolloClient, InMemoryCache } from "@apollo/client";
-
-// export const client = new ApolloClient({
-//   uri: "http://test.frontend.api.brainny.cc/graphql",
-//   cache: new InMemoryCache(),
-// });
+export const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});

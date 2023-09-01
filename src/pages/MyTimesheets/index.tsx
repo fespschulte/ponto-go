@@ -19,9 +19,9 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ClockIn } from "../../components/ClockIn";
-import React from "react";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { Sidebar } from "../../components/Sidebar";
+import { useState } from "react";
 
 export function MyTimesheets() {
   const { onOpen: isDrawerOpen } = useSidebarDrawer();
@@ -35,7 +35,7 @@ export function MyTimesheets() {
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [overlay, setOverlay] = React.useState(<OverlayOne />);
+  const [overlay, setOverlay] = useState(<OverlayOne />);
 
   return (
     <Stack
