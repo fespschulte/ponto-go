@@ -56,7 +56,7 @@ O layout da aplicação está disponível no Figma:
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
- <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" width="200px">
+ <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" width="350px">
 
   <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/desktop-screen-dashboard.png" height="350px">
 
