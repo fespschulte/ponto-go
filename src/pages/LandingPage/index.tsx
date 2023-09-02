@@ -28,6 +28,7 @@ export function LandingPage() {
       backgroundImage={"assets/bg-landing.png"}
       bgRepeat={"no-repeat"}
       backgroundSize={"cover"}
+      backgroundPosition={"center"}
     >
       <Flex
         w={{ base: "85%", md: "85.5%" }}
@@ -70,14 +71,6 @@ export function LandingPage() {
           display={{ base: "none", md: "flex" }}
           justify="flex-end"
         >
-          {/* <Flex align="center" display={{ base: "flex", md: "none" }}>
-            <Link to="/login">
-              <Button w="80px" h="40px" py="0px" variant="solidWhite">
-                Login
-              </Button>
-            </Link>
-          </Flex> */}
-
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
@@ -92,8 +85,8 @@ export function LandingPage() {
           justify={{ base: "center", md: "space-between" }}
         >
           <Flex
-            // minW={{ lg: "420px", xl: "520px" }}
-            // maxW={{ lg: "420px" }}
+            minW={{ lg: "420px", xl: "520px" }}
+            maxW={{ lg: "420px" }}
             color="white"
             flexDir="column"
             align={{ base: "center", md: "flex-start" }}
@@ -191,12 +184,7 @@ export function LandingPage() {
           <Slider />
         </div>
       </Flex>
-      <Divider
-        mt="100px"
-        borderColor="purple.800"
-        width="100vw"
-        orientation="horizontal"
-      />
+      <Divider mt="100px" borderColor="purple.800" orientation="horizontal" />
       <Flex
         flexDir={{ base: "column", sm: "row" }}
         w={{ base: "70%", sm: "90%" }}
