@@ -56,7 +56,7 @@ O layout da aplicação está disponível no Figma:
 ### Web
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
- <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" width="200px">
+ <img alt="Tela de login" title="Tela de login" src="./public/assets/desktop-screen-login.png" height="350px">
 
   <img alt="Tela de Dashboard" title="Tela de Dashboard" src="./public/assets/desktop-screen-dashboard.png" height="350px">
 
@@ -97,12 +97,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 #### **Website** [ViteJS](https://vitejs.dev/)
 
 - **[React Router DOM v6](https://reactrouter.com/en/main)**
-- **[Chakra-ui] (https://chakra-ui.com/getting-started)**
+- **[Chakra-ui](https://chakra-ui.com/getting-started)**
 - **[Apollo Client](https://www.apollographql.com/docs/react/)**
-- **[Apollo Client React Hooks] (https://www.apollographql.com/docs/react/api/react/hooks)**
+- **[Apollo Client React Hooks](https://www.apollographql.com/docs/react/api/react/hooks)**
 - **[GraphQL](https://graphql.org/learn/)**
 - **[JWT Decode](https://www.npmjs.com/package/jwt-decode)**
-- **[Gitmoji] (https://gitmoji.dev/)**
+- **[Gitmoji](https://gitmoji.dev/)**
 
 > Veja o arquivo [package.json](https://github.com/fespschulte/ponto-go/blob/master/package.json)
 
