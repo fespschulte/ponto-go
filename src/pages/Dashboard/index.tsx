@@ -10,16 +10,35 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import { ClockIn } from "../../components/ClockIn";
+import { ClockInList } from "../../components/ClockIn";
 import { Sidebar } from "../../components/Sidebar";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
+import { useQuery } from "@apollo/client";
+import { RegisteredTimesQuery } from "../../graphQL/queries";
 
-export function Dashboard() {
+const CLOCKINS_PER_PAGE = 7;
+
+export function Dashboard({ onLogout }) {
   const { onOpen } = useSidebarDrawer();
   const isWideVersion = useBreakpointValue({
     base: false,
     md: true,
   });
+
+  const handleOnLogout = () => {
+    onLogout();
+  };
+
+  const { data, loading, error } = useQuery(RegisteredTimesQuery, {
+    variables: { limit: CLOCKINS_PER_PAGE },
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error...</div>;
+  }
 
   return (
     <Stack
@@ -48,7 +67,7 @@ export function Dashboard() {
         </Box>
       )}
 
-      <Sidebar />
+      <Sidebar onLogoutClick={handleOnLogout} />
       <VStack mt="40px" align="flex-start" w="full" px="30px" gap="15px">
         <HStack w="full" justify="space-between">
           <Heading
@@ -73,7 +92,7 @@ export function Dashboard() {
           </Heading>
         </HStack>
         <VStack gap="15px" w="full">
-          <ClockIn />
+          <ClockInList clockins={data} />
         </VStack>
         <HStack mt="5px">
           <Button size="xs" variant="transparentDisabled">
