@@ -16,26 +16,53 @@ import {
   useBreakpointValue,
   IconButton,
   Box,
+  useModal,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
-import { ClockIn } from "../../components/ClockIn";
+import { ClockInList } from "../../components/ClockIn";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 import { Sidebar } from "../../components/Sidebar";
 import { useState } from "react";
+import { RegisteredTimesQueryById } from "../../graphQL/queries";
+import { useQuery } from "@apollo/client";
+import moment from "moment";
+import { useCreateRegisteredTimeMutation } from "../../graphQL/hooks";
 
-export function MyTimesheets() {
+function OverlayOne() {
+  return <ModalOverlay bg="modal" backdropFilter="blur(4px)" />;
+}
+
+export function MyTimesheets({ user, onLogout }) {
   const { onOpen: isDrawerOpen } = useSidebarDrawer();
   const isWideVersion = useBreakpointValue({
     base: false,
     md: true,
   });
 
-  function OverlayOne() {
-    return <ModalOverlay bg="modal" backdropFilter="blur(4px)" />;
-  }
+  const { createRegisteredTime } = useCreateRegisteredTimeMutation();
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const handleSubmit = async () => {
+    const today = new Date().toISOString();
+    await createRegisteredTime(today, user.id, today, user.id, user.id);
+  };
+  const handleOnLogout = () => {
+    onLogout();
+  };
+
   const [overlay, setOverlay] = useState(<OverlayOne />);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const { data, loading, error } = useQuery(RegisteredTimesQueryById, {
+    variables: { id: user?.id },
+    skip: !user?.id,
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error...</div>;
+  }
 
   return (
     <Stack
@@ -64,7 +91,7 @@ export function MyTimesheets() {
         </Box>
       )}
 
-      <Sidebar />
+      <Sidebar onLogoutClick={handleOnLogout} />
       <VStack mt="40px" align="flex-start" w="full" px="30px" gap="15px">
         <Button
           onClick={() => {
@@ -105,14 +132,18 @@ export function MyTimesheets() {
                 fontWeight="bold"
                 fontSize="3xl"
               >
-                10:30
+                {`${new Date().getHours()}:${new Date().getMinutes()}`}
               </Text>
               <Text color="purple.900" opacity={0.5}>
-                26/09/2021
+                {`${moment().format("DD/MM/YY")}`}
               </Text>
             </ModalBody>
             <ModalFooter display="flex" flexDir="column" gap="10px">
-              <Button variant="darkPurpleWhite" size="md" onClick={onClose}>
+              <Button
+                variant="darkPurpleWhite"
+                size="md"
+                onClick={handleSubmit}
+              >
                 Bater ponto
               </Button>
               <Button variant="outlinePurple" size="md" onClick={onClose}>
@@ -144,7 +175,7 @@ export function MyTimesheets() {
           </Heading>
         </HStack>
         <VStack gap="15px" w="full">
-          <ClockIn />
+          <ClockInList clockins={data} />
         </VStack>
         <HStack mt="5px">
           <Button size="xs" variant="transparentDisabled">

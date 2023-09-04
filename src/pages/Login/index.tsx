@@ -8,29 +8,29 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { Input } from "../../components/Form";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-// import { login } from "../../services/auth";
-// import { useMutation } from "@apollo/client";
-// import { loginMutation } from "../../services/api";
 import { useLogin } from "../../graphQL/hooks";
+import { setAccessToken } from "../../services/auth";
 
-export function Login() {
+export function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
-
-  //   const [mutate] = useMutation(loginMutation);
   const { login, loading } = useLogin();
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     setError(false);
-    // const user = await login(email, password);
-    const dataLogin = await login(email, password);
-    console.log("dados:", dataLogin);
-    <Navigate to="/dashboard" />;
-    console.log(error);
+    const user = await login(email, password);
+    // console.log(user);
+    if (user) {
+      setAccessToken(user.login.jwt);
+      // console.log(user.login);
+      onLogin(user);
+    } else {
+      setError(true);
+    }
   };
 
   return (

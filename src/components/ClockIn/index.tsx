@@ -1,8 +1,34 @@
-import { Box, HStack, VStack, Text } from "@chakra-ui/react";
+import { Box, HStack, VStack, Text, List } from "@chakra-ui/react";
+import moment from "moment";
 
-export function ClockIn() {
+interface ClockInProps {
+  username: string;
+  user_id: string;
+  time: string;
+}
+
+export function ClockInList({ clockins }: any[] | any) {
+  if (!clockins) {
+    return;
+  }
+  return (
+    <List w="full">
+      {clockins.registeredTimes.map((clockin) => (
+        <ClockIn
+          key={clockin.id}
+          username={clockin.user.username}
+          user_id={clockin.user.id}
+          time={clockin.timeRegistered}
+        />
+      ))}
+    </List>
+  );
+}
+
+export function ClockIn({ username, user_id, time }: ClockInProps) {
   return (
     <HStack
+      mb="15px"
       gap="0px"
       px="14px"
       py="15px"
@@ -17,7 +43,7 @@ export function ClockIn() {
         w="5px"
         h="full"
         bgColor="purple.800"
-        mr="40px"
+        mr={{ base: "20px", sm: "40px" }}
       ></Box>
       <HStack w="full" justify="space-between">
         <VStack align="flex-start" gap="0px">
@@ -28,11 +54,12 @@ export function ClockIn() {
             fontSize={{ base: "16px", sm: "20px", md: "22px" }}
             letterSpacing={0.2}
             minW={{ base: "125px", sm: "175px", md: "225px" }}
+            textTransform="capitalize"
           >
-            João Silva
+            {username}
           </Text>
           <Text color="grey" opacity={0.5} fontSize="14px" letterSpacing={0.2}>
-            001
+            00{user_id}
           </Text>
         </VStack>
         <Text
@@ -41,7 +68,7 @@ export function ClockIn() {
           fontSize={{ base: "14px", sm: "20px", md: "22px" }}
           letterSpacing={0.2}
         >
-          12/10/19
+          {moment(time).format("DD/MM/YY")}
         </Text>
         <Text
           color="grey"
@@ -49,7 +76,7 @@ export function ClockIn() {
           fontSize={{ base: "14px", sm: "20px", md: "22px" }}
           letterSpacing={0.2}
         >
-          18:30h
+          {moment(time).format("HH:MM")}
         </Text>
       </HStack>
     </HStack>
