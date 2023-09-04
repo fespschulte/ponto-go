@@ -16,6 +16,7 @@ import {
   useBreakpointValue,
   IconButton,
   Box,
+  useModal,
 } from "@chakra-ui/react";
 import { Icon } from "@iconify/react";
 import { ClockInList } from "../../components/ClockIn";
