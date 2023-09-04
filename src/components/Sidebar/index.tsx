@@ -12,12 +12,15 @@ import {
   DrawerBody,
 } from "@chakra-ui/react";
 import { SidebarNav } from "./SidebarNav";
-import { Link } from "react-router-dom";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useSidebarDrawer } from "../../contexts/SidebarDrawerContext";
 
-export function Sidebar() {
+export function Sidebar({ onLogoutClick }) {
   const { isOpen, onClose } = useSidebarDrawer();
+
+  const handleLogoutClick = () => {
+    onLogoutClick();
+  };
 
   const isDrawerSidebar = useBreakpointValue({
     base: true,
@@ -49,23 +52,23 @@ export function Sidebar() {
         src="/assets/pontogo-logo-purple.svg"
       ></Image>
       <SidebarNav />
-      <Link to="/login">
-        <Flex
-          position="absolute"
-          bottom="20px"
-          left="20px"
-          gap="10px"
-          align="center"
-        >
-          <Icon
-            color="grey"
-            width="24px"
-            height="24px"
-            icon="ant-design:logout-outlined"
-          />
-          <Text>Sair</Text>
-        </Flex>
-      </Link>
+      <Flex
+        as="button"
+        onClick={handleLogoutClick}
+        position="absolute"
+        bottom="20px"
+        left="20px"
+        gap="10px"
+        align="center"
+      >
+        <Icon
+          color="grey"
+          width="24px"
+          height="24px"
+          icon="ant-design:logout-outlined"
+        />
+        <Text>Sair</Text>
+      </Flex>
     </VStack>
   );
 }
